@@ -51,61 +51,87 @@ You call me maybe is slightly based on Data.Maybe from haskell.
 
 ## Static methods
 
+### new (a -> Maybe<a>)
+
+Creates a new `Maybe` instance witha  given value
+
 ```
-# new
-#
-# @param [a]
-# @return [Maybe a]
-Maybe.new(le_girl.number)
+Maybe.new(le_girl.number) # => Just '666888999'
+```
 
-# from_a
-#
-# @param [Array a]
-# @return [Maybe a]
-Maybe.from_a([])
-Maybe.from_a(['999666555'])
+### from_a (Array<a> -> Maybe<a>)
 
-# cat
-#
-# @param [Array (Maybe a)]
-# @return [Array a]
-Maybe.cat(le_club.girls.map(&:number))
+Creates a new `Maybe` instance from an array
 
-# map_maybe
-#
-# @param [Array a]
-# @block [a -> Maybe b]
-# @return [Array b]
-Maybe.map_maybe(le_club.girls, &:number)
+```
+Maybe.from_a([])            # => Nothing
+Maybe.from_a(['999666555']) # => Just '999666555'
+```
+
+### cat (Array<Maybe<a>> -> Array<a>)
+
+Extracts the values from an array of `Maybe` instances
+
+```
+Maybe.cat(le_club.girls.map(&:maybe_number)) # => ['999666555', '666888999']
+```
+
+### map_maybe (Array<a> -> (a -> Maybe<b>) -> Array<b>)
+
+Maps a given block that returns `Maybe` instances and returns their values
+
+```
+Maybe.map_maybe(le_club.girls) {|girl| Maybe.new(girl.number)} # => ['999666555', '666888999']
 ```
 
 ## Instance  methods
 
+### method_missing (Maybe<a>)
+
+Returns a `Maybe` instance with the result of the method call
+
 ```
-# []
-#
-# @return [Maybe a]
-Maybe.new(le_girl.telephone)[:number][:length]
+Maybe.new(le_girl.telephone).number.length # => Just 3
+```
 
-# get
-#
-# @param [b] - optional
-# @block [a -> b] - optional
-# @return [b]
-Maybe.new(le_girl.number).get(0, &:length)
+### get (b -> (a -> b) -> b)
 
-# just?
-#
-# @return [Boolean]
-Maybe.new(le_girl.number).just?
+Returns the value
 
-# nothing?
-#
-# @return [Boolean]
-Maybe.new(le_girl.number).nothing?
+```
+Maybe.new(le_girl.number).get              # => nil
+Maybe.new(le_girl.number).get('666333888') # => '666333888'
+Maybe.new(le_girl.number).get(0, &:length) # => 3
+```
 
-# to_a
-#
-# @return [Array a]
-Maybe.new(le_girl.number).to_a
+### just? (Boolean)
+
+Returns wether the monad is an instance of `Just`
+```
+Maybe.new(le_girl.number).just? # => true
+```
+
+### nothing? (Boolean)
+
+Returns wether the monad is an instance of `Nothing`
+
+```
+Maybe.new(le_girl.number).nothing? # => false
+```
+
+### to_a (Array<a>)
+
+Converts the `Maybe` instance into an array
+
+```
+Maybe.new(le_girl.number).to_a # => ['666888999']
+```
+
+### == (Maybe<a>)
+
+Compares to `Maybe` instances
+
+```
+Maybe.new(le_girl.number) == Maybe.new(le_girl.number) # => true
+Maybe.new(le_girl.number) == Nothing.new               # => false
 ```
