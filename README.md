@@ -51,7 +51,7 @@ You call me maybe is slightly based on Data.Maybe from haskell.
 
 ## Static methods
 
-### new (a -> Maybe<a>)
+### new (a -> Maybe[a])
 
 Creates a new `Maybe` instance witha  given value
 
@@ -59,7 +59,7 @@ Creates a new `Maybe` instance witha  given value
 Maybe.new(le_girl.number) # => Just '666888999'
 ```
 
-### from_a (Array<a> -> Maybe<a>)
+### from_a (Array[a] -> Maybe[a])
 
 Creates a new `Maybe` instance from an array
 
@@ -68,7 +68,7 @@ Maybe.from_a([])            # => Nothing
 Maybe.from_a(['999666555']) # => Just '999666555'
 ```
 
-### cat (Array<Maybe<a>> -> Array<a>)
+### cat (Array[Maybe[a]] -> Array[a])
 
 Extracts the values from an array of `Maybe` instances
 
@@ -76,7 +76,7 @@ Extracts the values from an array of `Maybe` instances
 Maybe.cat(le_club.girls.map(&:maybe_number)) # => ['999666555', '666888999']
 ```
 
-### map_maybe (Array<a> -> (a -> Maybe<b>) -> Array<b>)
+### map_maybe (Array[a] -> (a -> Maybe[b]) -> Array[b])
 
 Maps a given block that returns `Maybe` instances and returns their values
 
@@ -86,7 +86,7 @@ Maybe.map_maybe(le_club.girls) {|girl| Maybe.new(girl.number)} # => ['999666555'
 
 ## Instance  methods
 
-### method_missing (Maybe<a>)
+### method_missing (Maybe[a])
 
 Returns a `Maybe` instance with the result of the method call
 
@@ -119,7 +119,7 @@ Returns wether the monad is an instance of `Nothing`
 Maybe.new(le_girl.number).nothing? # => false
 ```
 
-### to_a (Array<a>)
+### to_a (Array[a])
 
 Converts the `Maybe` instance into an array
 
@@ -127,7 +127,7 @@ Converts the `Maybe` instance into an array
 Maybe.new(le_girl.number).to_a # => ['666888999']
 ```
 
-### == (Maybe<a>)
+### == (Maybe[a])
 
 Compares to `Maybe` instances
 
