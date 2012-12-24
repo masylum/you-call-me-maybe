@@ -42,7 +42,7 @@ which may contain 0 or more values.
 Whenever you have a computation that returns 0 or 1 result you can use the `maybe` monad.
 
 ```
-is_fake = Maybe.new(le_girl.telephone).number?.length? > 9
+is_fake = Maybe.new(le_girl.telephone).number.length.get > 9
 ```
 
 # API
